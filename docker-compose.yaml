@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=qb_user
+      - POSTGRES_PASSWORD=qb_password
+      - POSTGRES_DB=qb_raw
+    volumes:
+      - ./warehouse_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    networks:
+      - qb-net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=erick.dsuarez10@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=aspi2019
+    volumes:
+      - ./warehouse_ui_data:/var/lib/pgadmin
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    networks:
+      - qb-net
+
+  mage:
+    build: .
+    container_name: mage
+    volumes:
+      - ./mage_project:/home/src
+    ports:
+      - "6789:6789"
+    command: mage start mage_project
+    depends_on:
+      - postgres
+    networks:
+      - qb-net
+
+networks:
+  qb-net:
+    driver: bridge
