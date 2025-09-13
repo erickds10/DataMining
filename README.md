@@ -16,8 +16,7 @@ El diseño garantiza: **idempotencia, segmentación, manejo de rate limits, pagi
 
 📌 **Diagrama de arquitectura realizado en [draw.io](http://draw.io) (**https://drive.google.com/file/d/1sbg9ByPptIfH-ruTswj9eD5OyoXMGu0V/view?usp=sharing)
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image.png)
-
+![image.png](attachment:22434b6e-d577-4016-ba90-530a674e79e8:image.png)
 ---
 
 ## 2. Infraestructura Docker
