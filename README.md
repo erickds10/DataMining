@@ -16,7 +16,7 @@ El diseño garantiza: **idempotencia, segmentación, manejo de rate limits, pagi
 
 📌 **Diagrama de arquitectura realizado en [draw.io](http://draw.io) (**https://drive.google.com/file/d/1sbg9ByPptIfH-ruTswj9eD5OyoXMGu0V/view?usp=sharing)
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image.png)
+![image.png](attachment:22434b6e-d577-4016-ba90-530a674e79e8:image.png)
 
 ---
 
@@ -31,7 +31,7 @@ El diseño garantiza: **idempotencia, segmentación, manejo de rate limits, pagi
 
 **Captura de un “Docker ps” para ver que los contenedores están arriba:**
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%201.png)
+![image.png](attachment:244c9913-a1c3-455a-9142-d208884be0e2:image.png)
 
 ---
 
@@ -56,7 +56,7 @@ Todos los **secrets** se gestionan en Mage (`Secrets Manager`).
 
 **Captura de la sección “Secrets” en mi Mage:**
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%202.png)
+![image.png](attachment:309f8409-2ed6-4aff-8c21-c4b05aebff64:image.png)
 
 ---
 
@@ -66,15 +66,15 @@ Se construyeron **3 pipelines parametrizados**:
 
 - `qb_invoices_backfill`
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%203.png)
+![image.png](attachment:720552b3-df36-4f0f-a799-bbf73e76e462:image.png)
 
 - `qb_customers_backfill`
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%204.png)
+![image.png](attachment:23c1bbb1-1809-45f8-98e1-84c6b8f33fa1:image.png)
 
 - `qb_items_backfill`
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%205.png)
+![image.png](attachment:acb7d9a0-175c-4c9b-9234-7e886c879944:image.png)
 
 Cada pipeline incluye:
 
@@ -94,7 +94,7 @@ Cada pipeline incluye:
 
 **Captura de los 3 pipelines:**
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%206.png)
+![image.png](attachment:565e73f6-a046-460a-9fe5-b9b0cef25385:image.png)
 
 ---
 
@@ -106,7 +106,7 @@ Cada entidad tiene su tabla en el esquema `raw`:
 - `raw.qb_customers`
 - `raw.qb_items`
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%207.png)
+![image.png](attachment:47c00799-8fcf-497c-aaf7-17d53f325082:image.png)
 
 Columnas comunes:
 
@@ -119,7 +119,7 @@ Columnas comunes:
 
 **Captura Pg Admin de los 100 primeros registros de la tabla qb_invoices:**
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%208.png)
+![image.png](attachment:b94ad4a9-41a6-4d7a-b94e-b54f870aab64:image.png)
 
 ---
 
@@ -133,11 +133,11 @@ Se configuró un **trigger one-time en Mage** para lanzar los pipelines de backf
 
 **Captura Triggers de invoices, customers e ítems:**
 
-![Captura de pantalla 2025-09-12 a la(s) 15.45.08.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/Captura_de_pantalla_2025-09-12_a_la(s)_15.45.08.png)
+![Captura de pantalla 2025-09-12 a la(s) 15.45.08.png](attachment:3065461b-6f5b-4815-bb6b-4794576f56fd:Captura_de_pantalla_2025-09-12_a_la(s)_15.45.08.png)
 
-![Captura de pantalla 2025-09-12 a la(s) 15.44.51.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/Captura_de_pantalla_2025-09-12_a_la(s)_15.44.51.png)
+![Captura de pantalla 2025-09-12 a la(s) 15.44.51.png](attachment:7fa83a76-380a-4a45-8254-7e558643ccab:Captura_de_pantalla_2025-09-12_a_la(s)_15.44.51.png)
 
-![Captura de pantalla 2025-09-12 a la(s) 15.45.01.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/Captura_de_pantalla_2025-09-12_a_la(s)_15.45.01.png)
+![Captura de pantalla 2025-09-12 a la(s) 15.45.01.png](attachment:7774a801-dfc8-4b00-a513-884ac45cd883:Captura_de_pantalla_2025-09-12_a_la(s)_15.45.01.png)
 
 ---
 
@@ -151,7 +151,7 @@ Se configuró un **trigger one-time en Mage** para lanzar los pipelines de backf
 
 **Captura de** consultas en pgAdmin con conteos (`SELECT COUNT(*) FROM raw.qb_invoices;`).
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%209.png)
+![image.png](attachment:4634e153-d6fb-4960-a020-4f7bb113bcb0:image.png)
 
 ---
 
@@ -161,11 +161,9 @@ Casos documentados:
 
 - **Token expirado:** refresh automático en loader.
 
-![image.png](Deber%201%20Erick%20Daniel%20Su%C3%A1rez%20Veloz%2026cfbe7dbe3180efa237cc8d1ea7b642/image%2010.png)
+![image.png](attachment:8b08333b-4fd8-4aff-be57-802f05627ceb:image.png)
 
 - **Pagos o clientes vacíos:** loader devuelve lista vacía y loggea advertencia.
 - **Rate limits:** segmentación semanal + reintentos en loader.
 - **Errores de exportación:** payload convertido a JSON string antes de exportar.
 - **Timezone:** siempre se usa UTC (`Z`).
-
----
