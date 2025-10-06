@@ -1,0 +1,17 @@
+name: nyc_tlc
+version: "1.0"
+profile: nyc_tlc
+
+models:
+  nyc_tlc:
+    +on_schema_change: append_new_columns
+    taxi_zone_lookup:
+      +quote_columns: true 
+    silver:
+      +schema: SILVER
+      +materialized: table
+      +tags: [silver]
+    gold:
+      +schema: GOLD
+      +materialized: table
+      +tags: [gold]

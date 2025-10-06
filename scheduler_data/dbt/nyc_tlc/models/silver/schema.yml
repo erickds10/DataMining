@@ -1,0 +1,32 @@
+version: 2
+models:
+  - name: trips_cleaned
+    description: "Viajes NYC TLC estandarizados (yellow/green) con tipificación y columnas canónicas."
+    columns:
+      - name: pickup_datetime
+        description: "Fecha/hora de recogida."
+      - name: dropoff_datetime
+        description: "Fecha/hora de bajada."
+      - name: pickup_date
+        description: "Fecha (derivada) de recogida."
+      - name: pickup_location_id
+        description: "ID de zona de origen."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_zone')   # referencia a GOLD.dim_zone (ver schema.yml abajo)
+              field: zone_id
+      - name: dropoff_location_id
+        description: "ID de zona de destino."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_zone')
+              field: zone_id
+      - name: service_type
+        description: "Tipo de servicio: yellow o green."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['yellow', 'green']
+
