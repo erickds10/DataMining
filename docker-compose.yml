@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  pyspark-notebook:
+    image: jupyter/pyspark-notebook:latest
+    container_name: pyspark-notebook
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    env_file: .env
+    environment:
+      - SPARK_LOCAL_IP=0.0.0.0
+      - PYSPARK_PYTHON=python
+      # Añadimos JARs de Snowflake al classpath del driver y ejecutores
+      - SPARK_EXTRA_CLASSPATH=/home/jovyan/work/jdbc_jars/snowflake-jdbc.jar:/home/jovyan/work/jdbc_jars/spark-snowflake_2.12.jar
+    volumes:
+      - ./notebooks:/home/jovyan/work/notebooks
+      - ./src:/home/jovyan/work/src
+      - ./jdbc_jars:/home/jovyan/work/jdbc_jars
+      - ./coverage:/home/jovyan/work/coverage
+      - ./evidencias:/home/jovyan/work/evidencias
+      - ./.env:/home/jovyan/work/.env:ro

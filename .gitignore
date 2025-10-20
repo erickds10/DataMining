@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Credenciales/local
+.env
+*.env
+*.log
+
+# Binarios grandes (no versionar)
+jdbc_jars/
+spark-snowflake_2.12.jar
+
+# Otros
+*.zip
+*.tar.gz
