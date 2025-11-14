@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.ipynb_checkpoints/
+
+# Entornos
+.env
+.env.local
+
+# Docker
+*.log
+pgdata/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

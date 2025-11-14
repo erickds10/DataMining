@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pset4-postgres
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d  # crea esquemas RAW/ANALYTICS al iniciar
+    mem_limit: 6g           # <-- añade esto
+    memswap_limit: 8g 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  spark-notebook:
+    image: jupyter/pyspark-notebook:latest
+    container_name: pset4-spark
+    environment:
+      JUPYTER_TOKEN: taxi
+      PYSPARK_PYTHON: python
+      PYSPARK_DRIVER_PYTHON: python
+    ports: ["8888:8888"]
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    env_file: .env          
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  obt-builder:
+    build: ./obt-builder
+    container_name: pset4-obt-builder
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # ejemplo de comando "full rebuild" (ver Fase 5)
+    # command: ["python","build_obt.py","--mode","full","--year-start","2015","--year-end","2025","--services","yellow,green","--run-id","${RUN_ID}","--overwrite","false"]
+
+volumes:
+  pgdata:
