@@ -603,14 +603,6 @@ En términos cualitativos, el modelo tiende a aprender patrones como:
 - Después de varios días consecutivos al alza con volatilidad creciente, la probabilidad de una corrección aumenta.
 - Algunos días de la semana pueden tener ligeras diferencias estadísticas (por ejemplo, comportamiento distinto en lunes vs viernes), aunque este efecto no es muy fuerte.
 
-> Para el informe, se puede comentar que la
-> 
-> 
-> **interpretabilidad a nivel de reglas de decisión**
-> 
-> **SHAP**
-> 
-
 ---
 
 ### **4. Calidad de datos y consistencia del pipeline**
