@@ -1,0 +1,4 @@
+-- Crear esquemas RAW y ANALYTICS
+
+CREATE SCHEMA IF NOT EXISTS raw;
+CREATE SCHEMA IF NOT EXISTS analytics;

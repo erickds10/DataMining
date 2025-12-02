@@ -1,0 +1,6 @@
+pandas
+sqlalchemy
+psycopg2-binary
+yfinance
+python-dotenv
+# más cosas que uses luego (scikit-learn, xgboost, etc.)

@@ -1,0 +1,61 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: dm_postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+
+  jupyter-notebook:
+    image: jupyter/datascience-notebook:latest
+    container_name: dm_jupyter
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/home/jovyan/work
+    command: start-notebook.sh --NotebookApp.token=''
+
+  feature-builder:
+    build:
+      context: .
+      dockerfile: feature_builder/Dockerfile
+    container_name: dm_feature_builder
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/app
+    # Se ejecuta con: docker compose run feature-builder --mode full ...
+
+  model-api:
+    build: ./model_api
+    container_name: dm_model_api
+    environment:
+      - MODEL_PATH=/models/best_model_AAPL.pkl
+      - PORT=8000
+    volumes:
+      - ./models:/models:ro
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
