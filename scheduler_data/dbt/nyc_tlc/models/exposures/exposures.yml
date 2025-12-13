@@ -1,0 +1,12 @@
+version: 2
+exposures:
+  - name: taxi_kpis_daily
+    type: dashboard
+    maturity: medium
+    owner:
+      name: Data Platform
+      email: data@company.com
+    depends_on:
+      - ref('fct_trips')
+      - ref('dim_zone')
+    description: "KPIs diarios de viajes y zonas."

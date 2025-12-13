@@ -1,0 +1,38 @@
+version: 2
+models:
+  - name: dim_zone
+    description: "Dimensión de zonas TLC normalizada a partir de RAW.TAXI_ZONE_LOOKUP(_NORM)."
+    columns:
+      - name: zone_id
+        description: "TLC LocationID. Llave natural de zona."
+      - name: borough
+        description: "Borough/condado."
+      - name: zone
+        description: "Nombre de zona."
+      - name: service_zone
+        description: "Service zone: Airports / Yellow Zone / Green Zone."
+
+  - name: fct_trips
+    description: |
+      Hechos de viajes con granularidad '1 fila = 1 viaje'.
+      Lineage:
+        RAW.TLC_*_TRIPS_YYYY_MM -> SILVER.trips_cleaned -> GOLD.fct_trips
+    columns:
+      - name: pickup_date
+        description: "Fecha de recogida (derivada de pickup_datetime)."
+      - name: pickup_location_id
+        description: "Zona de recogida (FK a dim_zone.zone_id)."
+      - name: dropoff_location_id
+        description: "Zona de bajada (FK a dim_zone.zone_id)."
+      - name: service_type
+        description: "yellow/green."
+      - name: fare_amount
+        description: "Tarifa base reportada."
+      - name: total_amount
+        description: "Monto total del viaje (base + fees + tips - ajustes)."
+      - name: trip_distance_mi
+        description: "Distancia en millas."
+      - name: trip_minutes
+        description: "Duración en minutos."
+      - name: tip_amount
+        description: "Propina."

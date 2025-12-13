@@ -1,0 +1,12 @@
+sources:
+  - name: raw
+    database: DB_TLC
+    schema: RAW
+    freshness:
+      warn_after: {count: 36, period: hour}
+      error_after: {count: 72, period: hour}
+    tables:
+      - name: TAXI_ZONE_LOOKUP
+      - name: TLC_YELLOW_TRIPS_2021_01
+      - name: TLC_GREEN_TRIPS_2021_01
+      # añade más meses si cargas más
